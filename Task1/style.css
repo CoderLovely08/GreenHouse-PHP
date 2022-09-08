@@ -10,8 +10,7 @@ header{
 section{
     display: flex;
 }
-section .image-container{
-}
+
 section .signup-container{
     text-align: center;
     width: 100%;
@@ -31,6 +30,7 @@ section .signup-container h6 a{
     color: #5CDB95;
     text-decoration: none;
 }
+
 section .image-container img{
     position: relative;
     left: -5%;
@@ -39,7 +39,7 @@ section .image-container img{
 }
 input, input:focus{
     border-radius: 12px;
-    width: 80%;
+    width: 85%;
     height: 2.5em;
     margin: .5em .1rem;
     border: 1px solid;
@@ -55,4 +55,29 @@ section .signup-container input[type="submit"]{
     font-size: 20px;
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Login page Styling */
+#forgotPassword{
+    position: relative;
+    left: -25%;
+    color: #5CDB95;
+    font-size: 14px;
+}
+
+label input[type="checkbox"]{ 
+    font-size: 8px;
+    width:10%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.checkClass{
+    position: relative;
+    margin: 2% 0;
+    left: 8%;
+    text-align: left;
+}
+.checkClass label{
+    width: 100%;
 }
