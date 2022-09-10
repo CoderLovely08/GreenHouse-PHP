@@ -207,3 +207,19 @@ form i{
     transition: .2s ease-in-out;
     scale: 1.05;
 }
+
+/* Explore Section */
+
+.explore-section .card-deck{
+    width: 100%;
+    height: auto;
+    background-color: rgba(231, 229, 229, 0.781);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.explore-section .card-deck .card{
+    margin-top: 10px;
+}
