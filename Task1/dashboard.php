@@ -1,9 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['loggedUserName'])) {
-    $loggedUser = $_SESSION['loggedUserName'];
-}
 
+$loggedUser = $_SESSION['loggedUserName'];
 
 include 'config.php';
 $connectionString = "host=" . $config['DB_HOST'] . " port =5432 dbname=" . $config['DB_DATABASE'] . " user=" . $config['DB_USERNAME'] . " password=" . $config['DB_PASSWORD'];
@@ -40,21 +38,21 @@ $row = pg_fetch_all($result);
 </head>
 
 <body>
-
-    <div class="container">
+<?php
+  echo'  <div class="container">
         <div class="navigation-bar">
             <div id="navigation-container">
                 <a href="#" id="logo"><img src="images/logo.png" width="100px" alt="" srcset=""></a>
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="dashboard.php">Home</a></li>
                     <li><a href="#">Shop</a></li>
                     <li><a href="#">Contact</a></li>
                     <li><a href="#">About us</a></li>
-                    <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"><span id="displayUserName"><?php $loggedUser; ?></span></i></a></li>
+                    <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"><span id="displayUserName">'.$_SESSION["loggedUserName"].'</span></i></a></li>
                 </ul>
             </div>
-        </div>
-
+        </div>';
+?>
         <!-- Branding Section -->
         <div class="branding">
             <div class="company-title">
@@ -109,7 +107,7 @@ $row = pg_fetch_all($result);
             $('.card').click(function() {
                 var cardId = $(this).attr("id");
                 console.log(cardId);
-                set_url_data('view.html', cardId);
+                set_url_data('view.php', cardId);
             });
         }
 
