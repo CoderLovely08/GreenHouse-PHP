@@ -44,9 +44,9 @@ if(isset($_SESSION['loggedUserName'])) header("location: dashboard.php");
                 </div>
                 <div class="signup-container col-lg-4 col-md-6">
                     <h2>Join the Community Now!</h2>
-                    <form action="userLogin.php" method="post">
-                        <input name="useremail" type="email" placeholder="Enter Email">
-                        <input name="userpass" type="password" placeholder="Enter Password">
+                    <form action="" method="post">
+                        <input id="useremail" name="useremail" type="email" placeholder="Enter Email">
+                        <input id="userpass" name="userpass" type="password" placeholder="Enter Password">
                         <?php
                         if (isset($_SESSION["wrongPassword"])) {
                             $error = $_SESSION["wrongPassword"];
@@ -57,13 +57,14 @@ if(isset($_SESSION['loggedUserName'])) header("location: dashboard.php");
                         <a href="forgotPassword.php" id="forgotPassword">Forgot Passowrd?</a><br>
                         <div class="checkClass">
                             <label for="keepLoginTrue" style="word-wrap: break-word;">
-                                <input type="checkbox" id="keepLoginTrue">
+                                <input type="checkbox" id="keepLoginTrue" checked>
                                 Keep me Signed In
                             </label>
                         </div>
-                        <input type="submit" name="submit" value="Login">
+                        <a href="" id="submit" onclick="validateLogin();">Login</a>
                     </form>
                     <h6>New here? <a href="index.php">Signup</a></h6>
+                    <?php require 'script.php'; ?>
                 </div>
             </section>
         </div>
@@ -75,7 +76,3 @@ if(isset($_SESSION['loggedUserName'])) header("location: dashboard.php");
 </body>
 
 </html>
-
-<?php
-unset($_SESSION["wrongPassword"]);
-?>
