@@ -60,7 +60,7 @@ if (isset($_SESSION['loggedUserName'])) header("location: dashboard.php");
                             <input id="confirmPassword" name="confirmpassword" type="password"
                             placeholder="Confirm Password" required>
                         </p>
-                        <a href="#" id="submit" onclick="validatePassword();">Signup</a>
+                        <a href="" id="submit" onclick="validatePassword();">Signup</a>
                     </form>
                     <h6>Already have an account? <a href="login.php">Login</a></h6>
                     <?php require 'script.php'; ?>
