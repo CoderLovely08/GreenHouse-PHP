@@ -56,7 +56,7 @@ $row = pg_fetch_all($result);
                         <a href="">
                             <i class="fa fa-user-circle" aria-hidden="true">
                                 <span data-toggle="tooltip" data-placement="bottom" title="Logout" href="logout.php" id="displayUserName"><?php echo $_SESSION["loggedUserName"]; ?>
-</span>
+                                </span>
                             </i>
                         </a>
                     </li>
@@ -90,8 +90,9 @@ $row = pg_fetch_all($result);
                             $imageSrc = $row[$i]['imagename'];
                             $imageDescription = $row[$i]['imagedescription'];
                             $imageAuthor = $row[$i]['imageauthor'];
-                            echo '<div id="' . $imageId . '" class="card mb-3" style="min-width: 14rem; max-width: 14rem;" onclick="viewCard()">
-                                <img class="card-img-top" src="uploads/' . $imageSrc . '" alt="Card image cap">
+                            echo '
+                            <div id="' . $imageId . '" class="card mb-3" style="min-width: 14rem; max-width: 14rem;" onclick="viewCard()">
+                                <img class="card-img-top" style="min-width: 14rem; max-width: 14rem; height: 14rem;" src="uploads/' . $imageSrc . '" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">' . $imageTitle . '</h5>
                                     <p class="card-text">Author: ' . $imageAuthor . '</p>
