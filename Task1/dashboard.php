@@ -86,11 +86,10 @@ $row = pg_fetch_all($result);
                             $imageDescription = $row[$i]['imagedescription'];
                             $imageAuthor = $row[$i]['imageauthor'];
                             echo '<div id="' . $imageId . '" class="card mb-3" style="min-width: 14rem; max-width: 14rem;" onclick="viewCard()">
-                                <img class="card-img-top" src="images/' . $imageSrc . '" alt="Card image cap">
+                                <img class="card-img-top" src="uploads/' . $imageSrc . '" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">' . $imageTitle . '</h5>
                                     <p class="card-text">Author: ' . $imageAuthor . '</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                                 </div>
                             </div>';
                         }
