@@ -13,7 +13,6 @@ if (!$conn) {
     echo 'something went wrong!';
     exit();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,29 +36,11 @@ if (!$conn) {
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 
-    <script>
-        function grab_data_from_url() {
-            url = window.location.href;
-            data = url.split('data=').pop();
-            return (data);
-        }
-        var imgId = grab_data_from_url();
-        $.ajax({
-            type: 'post',
-            url: 'new.php',
-            data: {
-                imgId: imgId
-            },
-            success: function(response) {
-                console.log(response);
-            }
-        });
-    </script>
 </head>
 
 <body>
-
-    <div class="container">
+    <?php
+    echo '  <div class="container">
         <div class="navigation-bar">
             <div id="navigation-container">
                 <a href="#" id="logo"><img src="images/logo.png" width="100px" alt="" srcset=""></a>
@@ -68,26 +49,27 @@ if (!$conn) {
                     <li><a href="#">Shop</a></li>
                     <li><a href="#">Contact</a></li>
                     <li><a href="#">About us</a></li>
-                    <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"><span id="displayUserName"><?php $loggedUser; ?></span></i></a></li>
+                    <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"><span href="logout.php" id="displayUserName">Logout ' . $_SESSION["loggedUserName"] . '</span></i></a></li>
                 </ul>
             </div>
-        </div>
+        </div>';
+    ?>
 
-        <?php
-        $imgId = $_SESSION['imgId'];
-        $query = "Select * from ImageData where imageId='$imgId'";
-        $result = pg_query($conn, $query);
-        $row = pg_fetch_all($result);
+    <?php
+    $imgId = $_GET['data'];
+    $_SESSION['imgId']=$imgId;
+    $query = "Select * from ImageData where imageId='$imgId'";
+    $result = pg_query($conn, $query);
+    $row = pg_fetch_all($result);
 
 
-        for ($i = 0; $i < count($row); $i++) {
-            // echo var_dump($row[0]['imageid']);
-            $imageId = $row[$i]['imageid'];
-            $imageTitle = $row[$i]['imagetitle'];
-            $imageSrc = $row[$i]['imagename'];
-            $imageDescription = $row[$i]['imagedescription'];
-            $imageAuthor = $row[$i]['imageauthor'];
-            echo '<div class="row">
+    for ($i = 0; $i < count($row); $i++) {
+        $imageId = $row[$i]['imageid'];
+        $imageTitle = $row[$i]['imagetitle'];
+        $imageSrc = $row[$i]['imagename'];
+        $imageDescription = $row[$i]['imagedescription'];
+        $imageAuthor = $row[$i]['imageauthor'];
+        echo '<div class="row">
             <div class="imageContainer col-lg-6">
                 <img src="images/' . $imageSrc . '" alt="' . $imageTitle . '" srcset="">
                 <h2>' . $imageTitle . '</h2>
@@ -101,25 +83,21 @@ if (!$conn) {
                 </p>
             </div>
         </div>';
-        }
-        ?>
+    }
+    ?>
 
     </div>
-<script>
-    // $('#download-button').click(function(){
-    //     alert('download');
-    //     $.ajax({
-    //         url: "download.php",
-    //         type: 'post',
-    //         data: {
-    //             imgId: imgId
-    //         },
-    //         success:function(response){
-    //             console.log(response);
-    //         }
-    //     });
-    // });
-</script>
+    <script>
+        $('#displayUserName').click(function() {
+            $.ajax({
+                url: 'logout.php',
+                success: function(response) {
+                    alert(response);
+                    window.location = 'login.php';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
