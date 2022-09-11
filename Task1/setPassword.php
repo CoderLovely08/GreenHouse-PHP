@@ -56,7 +56,7 @@ session_start();
                                     </div>
                                     <div class="form-group">
                                         <button name="recover-submit" class="btn btn-lg btn-primary btn-block" value="Reset Password" id="setNewPass" type="submit">
-                                    </button>
+                                    Reset Password</button>
                                             </div>
                                 </form>
 
