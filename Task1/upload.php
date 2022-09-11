@@ -69,11 +69,13 @@ $row = pg_fetch_all($result);
                 </div>
                 <div class="form-group">
                     <label for="imageDescription">Description</label>
-                    <textarea rows="5" cols="60" type="text" class="form-control" name="imageDescription" id="imageDescription" placeholder="Description...">
-                      </textarea>
+                    <textarea rows="5" cols="60" type="text" class="form-control" name="imageDescription" id="imageDescription" placeholder="Description..."></textarea>
                 </div>
 
-                <input type="file" name="file" id="file">
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" 
+                    name="file" id="file">
+                </div>
                 <button type="submit" name="upload" class="btn btn-primary">Submit</button>
             </form>
         </div>
@@ -84,9 +86,10 @@ $row = pg_fetch_all($result);
     <!-- Jquery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script>
-        $('button').click(function(){
+        $('button').click(function() {
             // uploadImage();
         });
+
         function uploadImage() {
             var formData = $('#file').prop('files')[0];
             var form_data = new FormData();
