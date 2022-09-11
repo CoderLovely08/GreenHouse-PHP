@@ -1,71 +1,8 @@
 inside process 
 inside action 
-inside login 
-Inside user login
-Select * from UserInfo where email='om@gmail.com' and userpassword='25d55ad283aa400af464c76d713c07ad'
+inside reset password 
+lovelysingeras297@gmail.com
 inside process 
 inside action 
-inside login 
-Inside user login
-Select * from UserInfo where email='lovelysingeras297@gmail.com' and userpassword='25d55ad283aa400af464c76d713c07ad'
-Login Successfull
-inside process 
-inside action 
-inside register 
-inside process 
-inside action 
-inside login 
-Inside user login
-Select * from UserInfo where email='aarti@mail.com' and userpassword='25d55ad283aa400af464c76d713c07ad'
-Login Successfull
-inside process 
-inside action 
-inside login 
-Inside user login
-Select * from UserInfo where email='aarti@mail.com' and userpassword='25f9e794323b453885f5181f1b624d0b'
-inside process 
-inside action 
-inside login 
-Inside user login
-Select * from UserInfo where email='aarti@mail.com' and userpassword='8d1158f5358b0441983282cb97f24a59'
-inside process 
-inside action 
-inside login 
-Inside user login
-Select * from UserInfo where email='aarti@mail.com' and userpassword='25f9e794323b453885f5181f1b624d0b'
-0 rowsinside process 
-inside action 
-inside login 
-Inside user login
-Select * from UserInfo where email='lovelysingeras297@gmail.com' and userpassword='25d55ad283aa400af464c76d713c07ad'
-1 rowsLogin Successfull
-inside process 
-inside action 
-inside login 
-Inside user login
-Select * from UserInfo where email='nick@gmail.com' and userpassword='9aa90b438bb0dc6b51f78eaade37fe56'
-1 rowsLogin Successfull
-inside process 
-inside action 
-inside login 
-Inside user login
-Select * from UserInfo where email='nick@gmail.com' and userpassword='9aa90b438bb0dc6b51f78eaade37fe56'
-1 rowsLogin Successfull
-inside process 
-inside action 
-inside login 
-Inside user login
-Select * from UserInfo where email='nick@gmail.com' and userpassword='9aa90b438bb0dc6b51f78eaade37fe56'
-1 rowsLogin Successfull
-inside process 
-inside action 
-inside login 
-Inside user login
-Select * from UserInfo where email='nick@gmail.com' and userpassword='082b8af79d8fb4f24de49473619d97ee'
-0 rowsinside process 
-inside action 
-inside login 
-Inside user login
-Select * from UserInfo where email='nick@gmail.com' and userpassword='9aa90b438bb0dc6b51f78eaade37fe56'
-1 rowsLogin Successfull
-inside process 
+inside set new password 
+update UserInfo set userpassword='123456789' where email='lovelysingeras297@gmail.com'

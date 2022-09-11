@@ -1,7 +1,9 @@
 <?php
 session_start();
 try {
+    if(isset($_SESSION['loggedUserName']))
     $loggedUser = $_SESSION['loggedUserName'];
+    else header('Location: login.php');
 }
 catch (Exception $e){
     header('Location: login.php');
