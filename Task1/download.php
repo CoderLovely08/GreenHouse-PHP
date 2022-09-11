@@ -54,7 +54,7 @@ function createmyPdf()
     $pdf->Cell(176, 10, 'Exploring the Real Nature!', 0, 1, 'C');
 
     $pdf->SetFont('Times', 'B', 22);
-    $pdf->Image('images/' . $imgSrc, 60, 40, 100, 100);
+    $pdf->Image('uploads/' . $imgSrc, 60, 40, 100, 100);
     $pdf->SetXY(100, 150);
     $pdf->Cell(10, 0, $imageTitle, 0, 10, 'C');
 

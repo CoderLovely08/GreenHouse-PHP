@@ -55,8 +55,8 @@ $row = pg_fetch_all($result);
                     <li>
                         <a href="">
                             <i class="fa fa-user-circle" aria-hidden="true">
-                                <button class="btn" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Bottom popover" href="logout.php" id="displayUserName"><?php echo $_SESSION["loggedUserName"]; ?>
-                                </button>
+                                <span data-toggle="tooltip" data-placement="bottom" title="Logout" href="logout.php" id="displayUserName"><?php echo $_SESSION["loggedUserName"]; ?>
+</span>
                             </i>
                         </a>
                     </li>
@@ -110,6 +110,10 @@ $row = pg_fetch_all($result);
     <!-- Jquery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script>
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
         $(document).ready(function() {
             $(".card").bind("click", function() {
                 viewCard();
