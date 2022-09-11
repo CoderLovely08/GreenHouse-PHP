@@ -70,6 +70,7 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script>
         $(document).ready(function() {
+            $('#setNewPass').prop('disabled',true);
             $('#new-pass' && '#conf-pass').on('change', function() {
                 var newPass = $('#new-pass').val();
                 var confPass = $('#conf-pass').val();
@@ -77,8 +78,8 @@ session_start();
                 else if (newPass.length == 0 || confPass.length == 0) alert("New Password can't be empty!");
                 else if (confPass.length < 8 && newPass.length < 8) alert("New Password must contain minimum 8 characters!");
                 else {
-                    var allGood = true;
-                    alert(allGood);
+     
+
                     $.ajax({
                         url: 'process.php',
                         type: 'post',
