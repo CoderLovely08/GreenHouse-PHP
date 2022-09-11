@@ -4,7 +4,6 @@ if (isset($_SESSION['loggedUserName'])) {
     $loggedUser = $_SESSION['loggedUserName'];
 }
 
-
 include 'config.php';
 $connectionString = "host=" . $config['DB_HOST'] . " port =5432 dbname=" . $config['DB_DATABASE'] . " user=" . $config['DB_USERNAME'] . " password=" . $config['DB_PASSWORD'];
 $conn = pg_connect($connectionString);
@@ -13,6 +12,13 @@ if (!$conn) {
     echo 'something went wrong!';
     exit();
 }
+
+$imgId = $_GET['data'];
+    $_SESSION['imgId']=$imgId;
+    $query = "Select * from ImageData where imageId='$imgId'";
+    $result = pg_query($conn, $query);
+    $row = pg_fetch_row($result);
+    $name = $row[4]
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +27,7 @@ if (!$conn) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=0.1">
-    <title>Document</title>
+    <title><?php $name; ?></title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">

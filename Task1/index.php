@@ -11,7 +11,7 @@ if (isset($_SESSION['loggedUserName'])) header("location: dashboard.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=0.1">
-    <title>Document</title>
+    <title>Join the community</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
