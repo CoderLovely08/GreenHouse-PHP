@@ -71,7 +71,7 @@ if (!$conn) {
         $imageAuthor = $row[$i]['imageauthor'];
         echo '<div class="row">
             <div class="imageContainer col-lg-6">
-                <img src="images/' . $imageSrc . '" alt="' . $imageTitle . '" srcset="">
+                <img src="uploads/' . $imageSrc . '" alt="' . $imageTitle . '" srcset="">
                 <h2>' . $imageTitle . '</h2>
                 <h5>Author: ' . $imageAuthor . '</h5>
                 <a href="download.php" id="download-button">Download PDF</a>
