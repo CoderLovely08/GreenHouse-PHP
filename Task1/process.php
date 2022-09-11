@@ -146,7 +146,7 @@ function resetPassword(){
 function setNewPassword(){
     global $conn,$myfile;
     $userEmail=$_SESSION['resetEmail'];
-    $userPass=$_POST['password'];
+    $userPass=md5($_POST['password']);
     $query= "update UserInfo set userpassword='$userPass' where email='$userEmail'";
     fwrite($myfile,$query);
     $result=pg_query($conn,$query);
