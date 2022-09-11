@@ -1,7 +1,12 @@
 <?php
 session_start();
+try {
+    $loggedUser = $_SESSION['loggedUserName'];
+}
+catch (Exception $e){
+    header('Location: login.php');
+}
 
-$loggedUser = $_SESSION['loggedUserName'];
 
 include 'config.php';
 $connectionString = "host=" . $config['DB_HOST'] . " port =5432 dbname=" . $config['DB_DATABASE'] . " user=" . $config['DB_USERNAME'] . " password=" . $config['DB_PASSWORD'];
@@ -10,7 +15,7 @@ $conn = pg_connect($connectionString);
 if (!$conn) {
     echo 'something went wrong!';
     exit();
-} 
+}
 $query = "Select * from ImageData";
 $result = pg_query($conn, $query);
 $row = pg_fetch_all($result);
@@ -38,8 +43,8 @@ $row = pg_fetch_all($result);
 </head>
 
 <body>
-<?php
-  echo'  <div class="container">
+    <?php
+    echo '  <div class="container">
         <div class="navigation-bar">
             <div id="navigation-container">
                 <a href="#" id="logo"><img src="images/logo.png" width="100px" alt="" srcset=""></a>
@@ -48,61 +53,65 @@ $row = pg_fetch_all($result);
                     <li><a href="#">Shop</a></li>
                     <li><a href="#">Contact</a></li>
                     <li><a href="#">About us</a></li>
-                    <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"><span id="displayUserName">'.$_SESSION["loggedUserName"].'</span></i></a></li>
+                    <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"><span href="logout.php" id="displayUserName">' . $_SESSION["loggedUserName"] . '</span></i></a></li>
                 </ul>
             </div>
         </div>';
-?>
-        <!-- Branding Section -->
-        <div class="branding">
-            <div class="company-title">
-                <h1>Delivering <span>Plants,</span> <br>
-                    Delivering <span>Happiness!</span>
-                </h1>
-                <a class="upload-button" href="upload.php">Upload New</a>
-            </div>
-            <div class="plant-image">
-                <div class="img">
-                    <img src="images/plant.png" alt="">
-                </div>
+    ?>
+    <!-- Branding Section -->
+    <div class="branding">
+        <div class="company-title">
+            <h1>Delivering <span>Plants,</span> <br>
+                Delivering <span>Happiness!</span>
+            </h1>
+            <a class="upload-button" href="upload.php">Upload New</a>
+        </div>
+        <div class="plant-image">
+            <div class="img">
+                <img src="images/plant.png" alt="">
             </div>
         </div>
+    </div>
 
-        <div class="explore-section">
-            <div class="image-container">
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="card-deck">
-                        <?php 
+    <div class="explore-section">
+        <div class="image-container">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="card-deck">
+                        <?php
                         for ($i = 0; $i < count($row); $i++) {
-                            // echo var_dump($row[0]['imageid']);
-                            $imageId=$row[$i]['imageid'];
-                            $imageTitle=$row[$i]['imagetitle'];
-                            $imageSrc=$row[$i]['imagename'];
-                            $imageDescription=$row[$i]['imagedescription'];
-                            $imageAuthor=$row[$i]['imageauthor'];
-                            // $imageName=$row[$i]['imageName'];
-                            echo '<div id="'.$imageId.'" class="card mb-3" style="min-width: 14rem; max-width: 14rem;" onclick="viewCard()">
-                                <img class="card-img-top" src="images/'.$imageSrc.'" alt="Card image cap">
+                            $imageId = $row[$i]['imageid'];
+                            $imageTitle = $row[$i]['imagetitle'];
+                            $imageSrc = $row[$i]['imagename'];
+                            $imageDescription = $row[$i]['imagedescription'];
+                            $imageAuthor = $row[$i]['imageauthor'];
+                            echo '<div id="' . $imageId . '" class="card mb-3" style="min-width: 14rem; max-width: 14rem;" onclick="viewCard()">
+                                <img class="card-img-top" src="images/' . $imageSrc . '" alt="Card image cap">
                                 <div class="card-body">
-                                    <h5 class="card-title">'.$imageTitle.'</h5>
-                                    <p class="card-text">Author: '.$imageAuthor.'</p>
+                                    <h5 class="card-title">' . $imageTitle . '</h5>
+                                    <p class="card-text">Author: ' . $imageAuthor . '</p>
                                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                                 </div>
                             </div>';
                         }
                         ?>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
     </div>
 
     <!-- Jquery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script>
+        $(document).ready(function() {
+            $(".card").bind("click", function() {
+                viewCard();
+            });
+        });
+
         function viewCard() {
             $('.card').click(function() {
                 var cardId = $(this).attr("id");
@@ -115,6 +124,16 @@ $row = pg_fetch_all($result);
             new_url = go_to_url + '?data=' + data;
             window.open(new_url);
         }
+
+        $('#displayUserName').click(function() {
+            $.ajax({
+                url: 'logout.php',
+                success: function(response) {
+                    alert(response);
+                    window.location = 'login.php';
+                }
+            });
+        });
     </script>
 </body>
 
