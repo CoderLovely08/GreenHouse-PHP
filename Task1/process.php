@@ -28,6 +28,12 @@ if (isset($_POST['action'])) {
     }else if($_POST['action'] == 'upload'){
         fwrite($myfile, "inside upload image \n");
         uploadNewImageData();
+    } else if($_POST['action'] == 'resetPassword'){
+        fwrite($myfile, "inside reset password \n");
+        resetPassword();
+    } else if($_POST['action'] == 'setNewPassword'){
+        fwrite($myfile, "inside set new password \n");
+        setNewPassword();
     }
 }
 
@@ -124,3 +130,30 @@ function uploadNewImageData()
         }
     } else echo 'Selected file type not allowed!';
 }
+
+function resetPassword(){
+    global $conn,$myfile;
+    $userEmail=$_POST['email'];
+    $query= "Select * from UserInfo where email='$userEmail'";
+    $result=pg_query($conn,$query);
+    if(pg_num_rows($result)==1){
+        $_SESSION['resetEmail']=pg_fetch_row($result)[2];
+        fwrite($myfile,$_SESSION['resetEmail']);
+        echo 'Reset authorised';
+    }else echo 'Reset rejected';
+}
+
+function setNewPassword(){
+    global $conn,$myfile;
+    $userEmail=$_SESSION['resetEmail'];
+    $userPass=$_POST['password'];
+    $query= "update UserInfo set userpassword='$userPass' where email='$userEmail'";
+    fwrite($myfile,$query);
+    $result=pg_query($conn,$query);
+    if($result){
+        echo 'Reset Successfull';
+    }else echo 'Reset rejected';
+}
+
+
+?>
