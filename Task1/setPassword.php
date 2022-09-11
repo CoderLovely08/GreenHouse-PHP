@@ -71,7 +71,7 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script>
         $(document).ready(function() {
-            $('#setNewPass').prop('disabled',true);
+         //   $('#setNewPass').prop('disabled',true);
             $('#new-pass' && '#conf-pass').on('change', function() {
                 var newPass = $('#new-pass').val();
                 var confPass = $('#conf-pass').val();
