@@ -80,7 +80,7 @@ function uploadNewImageData()
     $file = $_FILES['file'];
 
     $imgTitle=trim($_POST['imageTitle']);
-    $imgDesc=trim($_POST['imageDescription']);
+    $imgDesc=pg_escape_string(trim($_POST['imageDescription']));
     $imgAuthor=$_SESSION['loggedUserName'];
     $fileName = $_FILES['file']['name'];
     $fileType = $_FILES['file']['type'];
@@ -106,7 +106,7 @@ function uploadNewImageData()
                 echo $fileUniqueName;
                 $fileDestinantion = 'uploads/' . $fileUniqueName;
                 move_uploaded_file($fileTempLocation, $fileDestinantion);
-                $query = "insert into ImageData(imageName,ImageDescription,imageAuthor,imageTitle) values('$fileUniqueName','$imgDesc','$imgAuthor','$imgTitle')";
+                $query = "insert into ImageData(imageName,ImageDescription,imageAuthor,imageTitle) values('$fileUniqueName','{$imgDesc}','$imgAuthor','$imgTitle')";
                 // echo $query;
                 $run = pg_query($conn, $query);
                 if ($run) {
