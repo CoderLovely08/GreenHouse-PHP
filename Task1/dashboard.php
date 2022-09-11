@@ -26,7 +26,7 @@ $row = pg_fetch_all($result);
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=0.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
     <!-- Bootstrap CSS -->
@@ -43,8 +43,8 @@ $row = pg_fetch_all($result);
 </head>
 
 <body>
-    
-    <div class="container">
+    <?php
+    echo '  <div class="container">
         <div class="navigation-bar">
             <div id="navigation-container">
                 <a href="#" id="logo"><img src="images/logo.png" width="100px" alt="" srcset=""></a>
@@ -53,19 +53,20 @@ $row = pg_fetch_all($result);
                     <li><a href="#">Shop</a></li>
                     <li><a href="#">Contact</a></li>
                     <li><a href="#">About us</a></li>
-                    <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"><span href="logout.php" id="displayUserName"> <?php echo  $_SESSION["loggedUserName"];?> </span></i></a></li>
+                    <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"><span href="logout.php" id="displayUserName">' . $_SESSION["loggedUserName"] . '</span></i></a></li>
                 </ul>
             </div>
-        </div>
+        </div>';
+    ?>
     <!-- Branding Section -->
-    <div class="row">
-        <div class="company-title col-lg-4 col-md-12">
+    <div class="branding">
+        <div class="company-title">
             <h1>Delivering <span>Plants,</span> <br>
                 Delivering <span>Happiness!</span>
             </h1>
             <a class="upload-button" href="upload.php">Upload New</a>
         </div>
-        <div class="plant-image col-lg-4 col-md-12">
+        <div class="plant-image">
             <div class="img">
                 <img src="images/plant.png" alt="">
             </div>
