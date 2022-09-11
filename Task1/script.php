@@ -33,7 +33,7 @@
             'password': $('#newPassword').val(),
             'action': 'register',
         };
-
+        alert('hi');
         $.ajax({
             url: 'process.php',
             type: 'post',
