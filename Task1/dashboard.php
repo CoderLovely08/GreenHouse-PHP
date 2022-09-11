@@ -43,8 +43,7 @@ $row = pg_fetch_all($result);
 </head>
 
 <body>
-    <?php
-    echo '  <div class="container">
+    <div class="container">
         <div class="navigation-bar">
             <div id="navigation-container">
                 <a href="#" id="logo"><img src="images/logo.png" width="100px" alt="" srcset=""></a>
@@ -53,11 +52,17 @@ $row = pg_fetch_all($result);
                     <li><a href="#">Shop</a></li>
                     <li><a href="#">Contact</a></li>
                     <li><a href="#">About us</a></li>
-                    <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"><span href="logout.php" id="displayUserName">' . $_SESSION["loggedUserName"] . '</span></i></a></li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-user-circle" aria-hidden="true">
+                                <button class="btn" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Bottom popover" href="logout.php" id="displayUserName"><?php echo $_SESSION["loggedUserName"]; ?>
+                                </button>
+                            </i>
+                        </a>
+                    </li>
                 </ul>
             </div>
-        </div>';
-    ?>
+        </div>
     <!-- Branding Section -->
     <div class="branding">
         <div class="company-title">
