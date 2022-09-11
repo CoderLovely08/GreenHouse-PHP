@@ -179,6 +179,7 @@ form i{
     float: left;
     margin: 16px;
     text-align: left;
+    width: 100%;
   }
   .branding .company-title h1{
     font-weight: bold;
@@ -190,11 +191,14 @@ form i{
   .branding .company-title h1 span{
       color: #12B159E0;
   }
-
+.plant-image .img img{
+    max-width: 30rem;
+    min-width: 15rem;
+}
   .upload-button, .upload-button:hover{
       position: absolute;
-      top: 70%;
-      left: 15%;
+      /* top: 70%;
+      left: 15%; */
       padding: 6px 80px;
       background-color: #5CDB95;
       border-radius: 16px;

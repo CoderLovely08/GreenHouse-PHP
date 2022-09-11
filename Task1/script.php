@@ -6,6 +6,8 @@
         var flag = true;
         if ($('#username').val().length === 0) {
             $('#username').css('border-color', 'red').after("<br><span>Name can't be empty!</span>");
+        } else if ($('#useremail').val().length == 0) {
+            $('#useremail').css('border-color', 'red').after("<br><span>Email can't be empty!</span>");
         } else if ($('#newPassword').val().length != $('#confirmPassword').val().length) {
             $('#confirmPassword').css('border-color', 'red').after("<br><span>Passwords doesn't match</span>");
         } else if ($('#newPassword').val().length < 8) {
@@ -33,7 +35,6 @@
             'password': $('#newPassword').val(),
             'action': 'register',
         };
-        alert('hi');
         $.ajax({
             url: 'process.php',
             type: 'post',
@@ -42,6 +43,7 @@
                 alert(response);
                 console.log("response");
                 if (response === 'Registration Successful') window.location = "login.php"
+                else $('#useremail').css('border-color', 'red').after("<br><span>Email already exists!</span>");
             }
         });
     }
@@ -52,7 +54,7 @@
             'password': $('#userpass').val(),
             'action': 'login',
         };
-
+        // alert('logging');
         $.ajax({
             url: 'process.php',
             type: 'post',

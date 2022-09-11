@@ -1,3 +1,25 @@
+<!-- <?php
+session_start();
+try {
+    $loggedUser = $_SESSION['loggedUserName'];
+}
+catch (Exception $e){
+    header('Location: login.php');
+}
+
+
+include 'config.php';
+$connectionString = "host=" . $config['DB_HOST'] . " port =5432 dbname=" . $config['DB_DATABASE'] . " user=" . $config['DB_USERNAME'] . " password=" . $config['DB_PASSWORD'];
+$conn = pg_connect($connectionString);
+
+if (!$conn) {
+    echo 'something went wrong!';
+    exit();
+}
+$query = "Select * from ImageData";
+$result = pg_query($conn, $query);
+$row = pg_fetch_all($result);
+?> -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,31 +50,35 @@
 </head>
 
 <body>
-
+    <!-- <?php
+    echo ' -->
     <div class="container">
-        <div class="navigation-bar">
-            <div id="navigation-container">
-                <a href="#" id="logo"><img src="images/logo.png" width="100px" alt="" srcset=""></a>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"><span
-                                    id="displayUserName">Username</span></i></a></li>
-                </ul>
+        <nav class="navbar navbar-expand-lg">
+            <div class="navigation-bar">
+                <div id="navigation-container">
+                    <a href="#" id="logo"><img src="images/logo.png" width="100px" alt="" srcset=""></a>
+                    <ul>
+                        <li><a href="dashboard.php">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"><span href="logout.php"
+                                        id="displayUserName">' . $_SESSION["loggedUserName"] . '</span></i></a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-
+        </nav>
+        <!-- ';
+    ?> -->
         <!-- Branding Section -->
-        <div class="branding">
-            <div class="company-title">
+        <div class="branding row">
+            <div class="company-title col-lg-4">
                 <h1>Delivering <span>Plants,</span> <br>
                     Delivering <span>Happiness!</span>
                 </h1>
                 <a class="upload-button" href="upload.php">Upload New</a>
             </div>
-            <div class="plant-image">
+            <div class="plant-image col-lg-6">
                 <div class="img">
                     <img src="images/plant.png" alt="">
                 </div>
@@ -64,22 +90,22 @@
                 <div class="container mt-5">
                     <div class="row">
                         <div class="card-deck">
-                            <div id="1" class="card mb-3" style="min-width: 14rem; max-width: 14rem;" onclick="viewCard()">
-                                <img class="card-img-top" src="images/flower-pot.png" alt="Card image cap">
+                            <?php
+                        for ($i = 0; $i < count($row); $i++) {
+                            $imageId = $row[$i]['imageid'];
+                            $imageTitle = $row[$i]['imagetitle'];
+                            $imageSrc = $row[$i]['imagename'];
+                            $imageDescription = $row[$i]['imagedescription'];
+                            $imageAuthor = $row[$i]['imageauthor'];
+                            echo '<div id="' . $imageId . '" class="card mb-3" style="min-width: 14rem; max-width: 14rem;" onclick="viewCard()">
+                                <img class="card-img-top" src="uploads/' . $imageSrc . '" alt="Card image cap">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Author: Lovely Sharma</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    <h5 class="card-title">' . $imageTitle . '</h5>
+                                    <p class="card-text">Author: ' . $imageAuthor . '</p>
                                 </div>
-                            </div>
-                            <div id="2" class="card mb-3" style="min-width: 14rem; max-width: 14rem;" onclick="viewCard()">
-                                <img class="card-img-top" src="images/flower-pot1.png" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Author: Lovely Sharma</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
+                            </div>';
+                        }
+                        ?>
                         </div>
                     </div>
                 </div>
@@ -91,11 +117,17 @@
     <!-- Jquery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script>
+        $(document).ready(function () {
+            $(".card").bind("click", function () {
+                viewCard();
+            });
+        });
+
         function viewCard() {
             $('.card').click(function () {
                 var cardId = $(this).attr("id");
                 console.log(cardId);
-                set_url_data('view.html',cardId);
+                set_url_data('view.php', cardId);
             });
         }
 
@@ -103,6 +135,16 @@
             new_url = go_to_url + '?data=' + data;
             window.open(new_url);
         }
+
+        $('#displayUserName').click(function () {
+            $.ajax({
+                url: 'logout.php',
+                success: function (response) {
+                    alert(response);
+                    window.location = 'login.php';
+                }
+            });
+        });
     </script>
 </body>
 
