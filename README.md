@@ -11,16 +11,16 @@
 ### [View Mockup here](https://www.figma.com/file/HT0qtZRWl8XlWFRHENYcik/Greenverz)
 
 # 1. Sign up Page
-![Signup page](Mockup/1.Signup.png)
+![Signup page](Task1/Mockup/1.Signup.png)
 
 # 2. Login Page
-![login page](Mockup/2.Login.png)
+![login page](Task1/Mockup/2.Login.png)
 
 # 3. Dashboard Page
-![Dashboard page](Mockup/3.Dashboard.png)
+![Dashboard page](Task1/Mockup/3.Dashboard.png)
 
 # 4. View Page
-![view page](Mockup/5.View.png)
+![view page](Task1/Mockup/5.View.png)
 
 # 5. Uplaod Page
-![Upload page](Mockup/4.Upload.png)
+![Upload page](Task1/Mockup/4.Upload.png)
