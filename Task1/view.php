@@ -14,11 +14,11 @@ if (!$conn) {
 }
 
 $imgId = $_GET['data'];
-    $_SESSION['imgId']=$imgId;
-    $query = "Select * from ImageData where imageId='$imgId'";
-    $result = pg_query($conn, $query);
-    $row = pg_fetch_row($result);
-    $name = $row[4]
+$_SESSION['imgId'] = $imgId;
+$query = "Select * from ImageData where imageId='$imgId'";
+$result = pg_query($conn, $query);
+$row = pg_fetch_row($result);
+$name = $row[4]
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +55,7 @@ $imgId = $_GET['data'];
                     <li><a href="#">Shop</a></li>
                     <li><a href="#">Contact</a></li>
                     <li><a href="#">About us</a></li>
-                    <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"><span href="logout.php" id="displayUserName">Logout ' . $_SESSION["loggedUserName"] . '</span></i></a></li>
+                    <li><a href="#"><i class="fa fa-user-circle" aria-hidden="true"><span href="logout.php" id="displayUserName">' . $_SESSION["loggedUserName"] . '</span></i></a></li>
                 </ul>
             </div>
         </div>';
@@ -63,7 +63,7 @@ $imgId = $_GET['data'];
 
     <?php
     $imgId = $_GET['data'];
-    $_SESSION['imgId']=$imgId;
+    $_SESSION['imgId'] = $imgId;
     $query = "Select * from ImageData where imageId='$imgId'";
     $result = pg_query($conn, $query);
     $row = pg_fetch_all($result);
@@ -83,7 +83,7 @@ $imgId = $_GET['data'];
                 <a href="download.php" id="download-button">Download PDF</a>
             </div>
             <div class="description col-lg-6">
-                <h3>Description:</h3>
+                <h3>About:</h3>
                 <p>
                 ' . $imageDescription . '
                 </p>

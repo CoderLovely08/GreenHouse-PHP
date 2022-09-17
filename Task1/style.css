@@ -241,7 +241,10 @@ form i{
 }
 
 .imageContainer img{
-    margin: 5% 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
     max-width: 18rem;
     height: auto;
     border-radius: 16px;
