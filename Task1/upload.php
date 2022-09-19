@@ -86,19 +86,6 @@ $row = pg_fetch_all($result);
     <!-- Jquery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script>
-        
-        function viewCard() {
-            $('.card').click(function() {
-                var cardId = $(this).attr("id");
-                console.log(cardId);
-                set_url_data('view.php', cardId);
-            });
-        }
-
-        function set_url_data(go_to_url, data) {
-            new_url = go_to_url + '?data=' + data;
-            window.open(new_url);
-        }
 
         $('#displayUserName').click(function() {
             $.ajax({
