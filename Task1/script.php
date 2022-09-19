@@ -21,8 +21,8 @@
     }
 
     function validateLogin() {
-        if ($('#userpass').val().length < 8) {
-            $('#userpass').css('border-color', 'red').after("<br><span>Passwords doesn't match</span>");
+        if ($('#newPassword').val().length < 8) {
+            $('#newPassword').css('border-color', 'red').after("<br><span>Passwords doesn't match</span>");
         } else if ($('#useremail').val().length == 0) {
             $('#useremail').css('border-color', 'red').after("<br><span>Email can't be empty!</span>");
         } else loginUser();
@@ -51,7 +51,7 @@
     function loginUser() {
         var data = {
             'email': $('#useremail').val(),
-            'password': $('#userpass').val(),
+            'password': $('#newPassword').val(),
             'action': 'login',
         };
         // alert('logging');
