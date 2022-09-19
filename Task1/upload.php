@@ -86,38 +86,7 @@ $row = pg_fetch_all($result);
     <!-- Jquery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script>
-        $('button').click(function() {
-            // uploadImage();
-        });
-
-        function uploadImage() {
-            var formData = $('#file').prop('files')[0];
-            var form_data = new FormData();
-            form_data.append('file', formData);
-            console.log(form_data);
-            alert(form_data);
-            var data = {
-                'imageTitle': $('#imageTitle').val(),
-                'imageDescription': $('#imageDescription').val(),
-                'formdata': form_data,
-                'action': 'upload'
-            };
-            alert('hi');
-            // $myfile = fopen("testfile.txt", "w");
-            // fwrite($myfile, 'upload Image \n');
-            console.log(data.formdata);
-            alert(data.formdata.keys);
-            $.ajax({
-                url: 'process.php',
-                type: 'post',
-                data: data,
-                success: function(response) {
-                    alert(response);
-                    // if(response==='Upload Successfull') window.location='dashboard.php';
-                }
-            });
-        }
-
+        
         function viewCard() {
             $('.card').click(function() {
                 var cardId = $(this).attr("id");
