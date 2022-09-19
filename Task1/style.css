@@ -92,15 +92,6 @@ label input[type="checkbox"]{
     width: 100%;
 }
 
-form i{
-    position: absolute;
-    float: right;
-    right: 50px;
-    top: 51%;
-    z-index: 2;
-}
-
-
 /* -------------------- Dashboard ------------------------ */
 
 /* Navigation Bar section */
@@ -266,4 +257,13 @@ form i{
 }
 .row{
     margin: 0 auto;
+}
+
+.wrapper{
+    position:relative;
+  }
+.wrapper i{
+  position: absolute;
+  top: 15px;
+  right: 40px;
 }
