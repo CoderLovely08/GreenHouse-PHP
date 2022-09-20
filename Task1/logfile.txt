@@ -20,3 +20,12 @@ Select * from UserInfo where email='nick@gmail.com' and userpassword='9aa90b438b
 inside process 
 inside action 
 inside register 
+inside process 
+inside action 
+inside register 
+inside process 
+inside action 
+inside login 
+Inside user login
+Select * from UserInfo where email='ani@gmail.com' and userpassword='dc06698f0e2e75751545455899adccc3'
+1 rowsLogin Successfull

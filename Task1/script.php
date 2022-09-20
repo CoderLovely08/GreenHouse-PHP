@@ -41,7 +41,7 @@
             data: data,
             success: function(response) {
                 alert(response);
-                console.log("response");
+                console.log(response);
                 if (response === 'Registration Successful') window.location = "login.php"
                 else $('#useremail').css('border-color', 'red').after("<br><span>Email already exists!</span>");
             }
@@ -54,7 +54,7 @@
             'password': $('#newPassword').val(),
             'action': 'login',
         };
-        // alert('logging');
+
         $.ajax({
             url: 'process.php',
             type: 'post',
@@ -66,35 +66,4 @@
         });
     }
 
-    function logoutUser() {
-        session_unset();
-        session_destroy();
-        window.location = 'login.php'
-    }
-
-    function uploadImage() {
-        var formData = $('#file').prop('files')[0];
-        var form_data = new FormData();
-        form_data.append('file', formData);
-        console.log(form_data);
-        // alert(form_data);
-        var data = {
-            'imageTitle': $('#imageTitle').val(),
-            'imageDescription': $('#imageDescription').val(),
-            'formdata': form_data,
-            'action': 'upload'
-        };
-        $myfile = fopen("logfile.txt", "a");
-        fwrite($myfile, 'upload Image \n');
-        alert('hi');
-        $.ajax({
-            url: 'process.php',
-            type: 'post',
-            data: data,
-            success: function(response) {
-                alert(response);
-                // if(response==='Upload Successfull') window.location='dashboard.php';
-            }
-        });
-    }
 </script>

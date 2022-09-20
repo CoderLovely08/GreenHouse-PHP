@@ -12,11 +12,16 @@ if (!$conn) {
     exit();
 }
 
+/*-----------------------------------------------
+            Trigger File Upload
+-----------------------------------------------*/
 if(isset($_POST['upload'])) {
-    echo '<script>alert("how are you");</script>';
     uploadNewImageData();
 }
-// echo '<script>alert("how are you");</script>';
+
+/*-----------------------------------------------
+        Check type of action to be performed 
+-----------------------------------------------*/
 if (isset($_POST['action'])) {
     fwrite($myfile, "inside action \n");
     if ($_POST['action'] == 'register') {
@@ -37,7 +42,9 @@ if (isset($_POST['action'])) {
     }
 }
 
-// Register
+/*-----------------------------------------------
+                Register User
+-----------------------------------------------*/
 function register()
 {
     global $conn, $myfile;
@@ -53,13 +60,21 @@ function register()
         fwrite($myfile, $txt);
         exit();
     } else {
-        $userpass = md5($userpass);
-        $query = "Insert into UserInfo(username,email,userpassword) values('$username','$useremail','$userpass')";
-        $result = pg_query($conn, $query);
-        if ($result) echo 'Registration Successful';
+        try{
+            $userpass = md5($userpass);
+            $query = "Insert into UserInfo(username,email,userpassword) values('$username','$useremail','$userpass')";
+            $result = pg_query($conn, $query);
+            echo 'Registration Successful';
+        }catch(Exception $e){
+            echo 'Error!';
+        }
     }
 }
 
+
+/*-----------------------------------------------
+                Login User
+-----------------------------------------------*/
 function login()
 {
     global $myfile, $conn;
@@ -84,6 +99,9 @@ function login()
 }
 
 
+/*-----------------------------------------------
+            Process Upload file 
+-----------------------------------------------*/
 function uploadNewImageData()
 {
     global $conn,$myfile;
@@ -112,25 +130,24 @@ function uploadNewImageData()
     if (in_array($fileExtension, $allowedExtension)) {
         if ($fileError === 0) {
             if ($fileSize < 500000) {
-                // $fileUniqueName=uniqid('',true).".".$fileExtension;
                 $fileUniqueName = "$fileExt[0]." . $fileExtension;
                 echo $fileUniqueName;
                 $fileDestinantion = 'uploads/' . $fileUniqueName;
                 move_uploaded_file($fileTempLocation, $fileDestinantion);
                 $query = "insert into ImageData(imageName,ImageDescription,imageAuthor,imageTitle) values('$fileUniqueName','{$imgDesc}','$imgAuthor','$imgTitle')";
-                // echo $query;
                 $run = pg_query($conn, $query);
                 if ($run) {
-                    echo '<br>upload successfull';
                     header("Location: dashboard.php");
                 }
                 else echo 'error';
-                // header("Location: index.html?uploaded");
             } else echo 'File size is larger than 500kb';
         }
     } else echo 'Selected file type not allowed!';
 }
 
+/*-----------------------------------------------
+                Password Reset
+-----------------------------------------------*/
 function resetPassword(){
     global $conn,$myfile;
     $userEmail=$_POST['email'];
@@ -143,6 +160,9 @@ function resetPassword(){
     }else echo 'Reset rejected';
 }
 
+/*-----------------------------------------------
+                Set New Password
+-----------------------------------------------*/
 function setNewPassword(){
     global $conn,$myfile;
     $userEmail=$_SESSION['resetEmail'];
