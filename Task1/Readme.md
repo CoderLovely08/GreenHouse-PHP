@@ -1,4 +1,4 @@
-# GreenHome Tech
+# GreenYard 
 
 ## Requirements
 
